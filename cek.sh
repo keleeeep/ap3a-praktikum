@@ -7,7 +7,8 @@
 #
 # Untuk setiap test tests/<program>.<n>.in, skrip mencari <program>.c di folder
 # pertemuan, mengompilasinya, menjalankannya dengan input itu, lalu memeriksa bahwa
-# setiap baris di tests/<program>.<n>.expect muncul di output.
+# setiap baris di tests/<program>.<n>.expect muncul di output. Setiap test berjalan di
+# folder kosong sendiri, jadi program boleh membuat file.
 # KODE=<folder> memakai folder lain sebagai sumber kode (misalnya folder kunci jawaban).
 
 CC=${CC:-cc}
@@ -45,8 +46,10 @@ for p in $pertemuan; do
       echo "GAGAL   $nama: $src tidak bisa dikompilasi"; sed 's/^/        /' "$TMP/err" | head -n 5
       gagal=$((gagal + 1)); continue
     fi
+    # jalankan di folder kosong, supaya file yang dibuat program tidak tercampur;
     # batas 5 detik, supaya loop tak berujung tidak membuat skrip macet
-    perl -e 'alarm 5; exec @ARGV' "$TMP/$prog" <"$input" >"$TMP/out" 2>&1
+    rm -rf "$TMP/run"; mkdir "$TMP/run"
+    (cd "$TMP/run" && perl -e 'alarm 5; exec @ARGV' "$TMP/$prog") <"$input" >"$TMP/out" 2>&1
     hilang=""
     while IFS= read -r baris; do
       grep -qF -- "$baris" "$TMP/out" || hilang="$hilang

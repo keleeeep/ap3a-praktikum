@@ -21,6 +21,7 @@ Penjelasan tiap latihan ada di `README.md` di folder pertemuan.
 | Pertemuan | Topik |
 |---|---|
 | [P5](p05-array/) | Array 1, 2 dan 3 dimensi |
+| [P6](p06-pointer-file/) | Pointer dan operasi file |
 
 ## Cara memakai
 
@@ -42,6 +43,6 @@ cc -std=c99 -Wall p05-array/kembangkan/nilai1d.c -o nilai1d
 
 ## Cara kerja test
 
-Setiap test adalah sepasang file di `tests/`: `<program>.<n>.in` berisi input, dan `<program>.<n>.expect` berisi baris yang harus muncul di output. `cek.sh` mengompilasi program, menjalankannya dengan input itu, lalu memeriksa setiap baris. Teks prompt seperti `Bilangan ke-1:` boleh berbeda; yang dicek hanya baris hasil.
+Setiap test adalah sepasang file di `tests/`: `<program>.<n>.in` berisi input, dan `<program>.<n>.expect` berisi baris yang harus muncul di output. `cek.sh` mengompilasi program, menjalankannya dengan input itu di folder kosong, lalu memeriksa setiap baris. Teks prompt seperti `Bilangan ke-1:` boleh berbeda; yang dicek hanya baris hasil.
 
 Kunci jawaban tidak ada di repo ini.
