@@ -1,0 +1,9 @@
+name: cek
+on: [push, pull_request]
+jobs:
+  kompilasi:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semua kode latihan bisa dikompilasi
+        run: ./cek.sh --kompilasi
